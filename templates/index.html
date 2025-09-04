@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informatica to PySpark Workflow</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- Header -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1">
+                    <i class="fas fa-cogs me-2"></i>
+                    Informatica to PySpark Workflow
+                </span>
+                <div class="navbar-nav ms-auto">
+                    <button class="btn btn-outline-light btn-sm" onclick="resetWorkflow()">
+                        <i class="fas fa-refresh me-1"></i>Reset
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Alert Container -->
+        <div id="alertContainer"></div>
+
+        <!-- Main Content -->
+        <div class="row">
+            <!-- Left Panel - Configuration -->
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-cog me-2"></i>Business Logic Configuration
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="businessLogicContainer">
+                            <div class="text-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <p class="mt-2">Loading business logic...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel - Data Upload & Execution -->
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-play me-2"></i>Test Data & Execution
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- File Upload Section -->
+                        <div class="mb-4">
+                            <h6 class="text-muted mb-3">
+                                <i class="fas fa-upload me-2"></i>Step 1: Upload Test Data
+                            </h6>
+                            <div class="upload-area" id="uploadArea">
+                                <i class="fas fa-cloud-upload-alt fa-3x text-muted mb-3"></i>
+                                <p class="text-muted">Drag & drop your CSV file here or click to browse</p>
+                                <input type="file" id="fileInput" accept=".csv" style="display: none;">
+                                <button class="btn btn-outline-primary" onclick="document.getElementById('fileInput').click()">
+                                    Choose File
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- File Info Section -->
+                        <div id="fileInfoSection" style="display: none;" class="mb-4">
+                            <h6 class="text-muted mb-3">
+                                <i class="fas fa-info-circle me-2"></i>File Information
+                            </h6>
+                            <div id="fileInfoContent"></div>
+                        </div>
+
+                        <!-- Execution Section -->
+                        <div class="mb-4">
+                            <h6 class="text-muted mb-3">
+                                <i class="fas fa-play-circle me-2"></i>Step 2: Execute Workflow
+                            </h6>
+                            <button id="executeBtn" class="btn btn-success btn-lg w-100" disabled onclick="executeWorkflow()">
+                                <i class="fas fa-play me-2"></i>Run Workflow
+                            </button>
+                        </div>
+
+                        <!-- Execution Status -->
+                        <div id="executionStatus" style="display: none;" class="mb-4">
+                            <h6 class="text-muted mb-3">
+                                <i class="fas fa-chart-line me-2"></i>Execution Status
+                            </h6>
+                            <div id="executionContent"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="row mt-4" id="resultsSection" style="display: none;">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-table me-2"></i>Workflow Results
+                        </h5>
+                        <button class="btn btn-outline-dark btn-sm me-2" onclick="downloadResults()">
+                            <i class="fas fa-download me-1"></i>Download CSV
+                        </button>
+                        <button class="btn btn-primary btn-sm" onclick="openDashboard()">
+                            <i class="fas fa-chart-line me-1"></i>View Dashboard
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div id="resultsContent">
+                            <!-- Results will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Workflow Diagram Section -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header bg-secondary text-white">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-project-diagram me-2"></i>Workflow Diagram
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="workflowDiagram" class="text-center">
+                            <!-- Workflow diagram will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light text-center text-muted py-3 mt-5">
+        <div class="container">
+            <p class="mb-0">
+                <i class="fas fa-code me-1"></i>
+                Informatica to PySpark Workflow Converter | 
+                <span id="pysparkStatus">Loading...</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

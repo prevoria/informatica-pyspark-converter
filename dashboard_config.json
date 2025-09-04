@@ -1,0 +1,35 @@
+{
+    "dashboard_settings": {
+        "title": "Informatica to PySpark - Before/After Analysis",
+        "theme": "modern",
+        "auto_refresh": false,
+        "export_formats": [
+            "PNG",
+            "PDF",
+            "SVG",
+            "CSV"
+        ]
+    },
+    "chart_settings": {
+        "colors": {
+            "before": "#ffc107",
+            "after": "#28a745",
+            "improvement": "#17a2b8",
+            "warning": "#dc3545"
+        },
+        "animation": {
+            "enabled": true,
+            "duration": 1000
+        }
+    },
+    "filter_settings": {
+        "default_date_range": "all",
+        "enable_real_time_filtering": true,
+        "max_filter_options": 100
+    },
+    "data_settings": {
+        "max_records_display": 1000,
+        "pagination_size": 50,
+        "cache_duration": 300
+    }
+}

@@ -1,0 +1,344 @@
+/* Custom CSS for Informatica to PySpark Workflow */
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Upload Area Styling */
+.upload-area {
+    border: 2px dashed #dee2e6;
+    border-radius: 10px;
+    padding: 40px;
+    text-align: center;
+    background-color: #f8f9fa;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.upload-area:hover {
+    border-color: #007bff;
+    background-color: #e3f2fd;
+}
+
+.upload-area.dragover {
+    border-color: #28a745;
+    background-color: #d4edda;
+}
+
+/* Card Styling */
+.card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 10px;
+}
+
+.card-header {
+    border-radius: 10px 10px 0 0 !important;
+    font-weight: 600;
+}
+
+/* Business Logic Steps */
+.step-item {
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+.step-item:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+}
+
+.step-number {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.step-type-badge {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 12px;
+}
+
+/* File Info Styling */
+.file-info-item {
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 8px;
+}
+
+.file-info-label {
+    font-weight: 600;
+    color: #495057;
+}
+
+/* Results Table */
+.results-table {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+}
+
+.results-table table {
+    margin-bottom: 0;
+}
+
+.results-table th {
+    position: sticky;
+    top: 0;
+    background-color: #f8f9fa;
+    z-index: 10;
+    border-bottom: 2px solid #dee2e6;
+}
+
+/* Execution Status */
+.execution-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.execution-item:last-child {
+    border-bottom: none;
+}
+
+.execution-icon {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+.execution-text {
+    flex: 1;
+}
+
+/* Workflow Diagram */
+.workflow-step {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+}
+
+.workflow-step.source { background-color: #28a745; }
+.workflow-step.expression { background-color: #ffc107; color: #212529; }
+.workflow-step.sorter { background-color: #17a2b8; }
+.workflow-step.aggregator { background-color: #dc3545; }
+.workflow-step.target { background-color: #6f42c1; }
+
+.workflow-arrow {
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 20px;
+    color: #6c757d;
+}
+
+/* Configuration Panel */
+.config-item {
+    background-color: #f8f9fa;
+    border-left: 4px solid #007bff;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 0 6px 6px 0;
+}
+
+.config-key {
+    font-weight: 600;
+    color: #495057;
+}
+
+.config-value {
+    color: #6c757d;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+/* Alert Styling */
+.alert {
+    border-radius: 8px;
+    border: none;
+}
+
+/* Button Enhancements */
+.btn {
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Loading Spinner */
+.spinner-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container-fluid {
+        padding: 10px;
+    }
+    
+    .card-body {
+        padding: 15px;
+    }
+    
+    .upload-area {
+        padding: 20px;
+    }
+    
+    .workflow-step {
+        display: block;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    
+    .workflow-arrow {
+        display: block;
+        transform: rotate(90deg);
+        margin: 10px 0;
+    }
+}
+
+/* Animation Classes */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Status Icons */
+.status-success { color: #28a745; }
+.status-error { color: #dc3545; }
+.status-warning { color: #ffc107; }
+.status-info { color: #17a2b8; }
+
+/* Code Blocks */
+.code-block {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    padding: 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    overflow-x: auto;
+}
+
+/* Progress Indicators */
+.progress-step {
+    position: relative;
+    padding-left: 40px;
+    margin-bottom: 15px;
+}
+
+.progress-step::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 0;
+    bottom: -15px;
+    width: 2px;
+    background-color: #dee2e6;
+}
+
+.progress-step:last-child::before {
+    display: none;
+}
+
+.progress-step-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    z-index: 1;
+}
+
+.progress-step.completed .progress-step-icon {
+    background-color: #28a745;
+}
+
+.progress-step.active .progress-step-icon {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+/* Table Enhancements */
+.table-responsive {
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.table th {
+    background-color: #f8f9fa;
+    border-top: none;
+    font-weight: 600;
+    color: #495057;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+/* Utility Classes */
+.text-truncate-custom {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.bg-light-blue {
+    background-color: #e3f2fd !important;
+}
+
+.border-primary-light {
+    border-color: #b3d9ff !important;
+}
