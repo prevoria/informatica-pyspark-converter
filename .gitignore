@@ -68,6 +68,9 @@ secrets.json
 test_*.py
 *_test.py
 
+# Temporary files
+~$*
+
 # Documentation builds
 docs/_build/
 
